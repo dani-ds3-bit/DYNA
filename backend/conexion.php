@@ -7,8 +7,8 @@ header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
 header("Cache-Control: post-check=0, pre-check=0", false);
 header("Pragma: no-cache");
 
-// Función para cargar variables de entorno desde un archivo .env si existe
-function cargarEnv($ruta) {
+function cargarEnv($ruta)
+{
     if (!file_exists($ruta)) {
         return;
     }
@@ -28,10 +28,10 @@ function cargarEnv($ruta) {
         if ($posIgual !== false) {
             $clave = trim(substr($linea, 0, $posIgual));
             $valor = trim(substr($linea, $posIgual + 1));
-            
-            // Quitar comillas si existen
+
+            // 
             $valor = trim($valor, "\"'");
-            
+
             if (!empty($clave)) {
                 $_ENV[$clave] = $valor;
                 $_SERVER[$clave] = $valor;
@@ -43,8 +43,9 @@ function cargarEnv($ruta) {
     }
 }
 
-// Función segura para obtener variables de entorno con fallback
-function obtenerEnv($clave, $default = null) {
+
+function obtenerEnv($clave, $default = null)
+{
     if (isset($_ENV[$clave])) {
         return $_ENV[$clave];
     }
@@ -60,7 +61,7 @@ function obtenerEnv($clave, $default = null) {
     return $default;
 }
 
-// Cargar el archivo de configuración .env en la raíz del proyecto
+
 cargarEnv(__DIR__ . '/../.env');
 
 // se declaran las credenciales de base de datos con fallback seguro
