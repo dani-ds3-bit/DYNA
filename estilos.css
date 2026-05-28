@@ -2303,3 +2303,29 @@ body.tema-oscuro .caja-info-progreso {
     max-width: calc(100vw - 32px);
   }
 }
+
+/* Correcciones responsivas para el formulario de registro y becas */
+@media (max-width: 480px) {
+  .bloque-formulario-acceso,
+  .columna-formulario {
+    padding: 20px !important; /* Reduce padding lateral en móviles para ganar espacio */
+  }
+
+  .fila-beca {
+    flex-wrap: wrap !important;
+  }
+  
+  .fila-beca input[name="nombre_beca[]"] {
+    flex: 1 1 100% !important; /* El nombre de la beca toma toda la primera línea */
+    margin-bottom: 6px !important;
+  }
+  
+  .fila-beca input[name="monto_beca[]"] {
+    flex: 1 !important;
+    width: auto !important; /* Cancela el ancho fijo inline de 110px */
+  }
+  
+  .fila-beca .btn-quitar-beca {
+    flex-shrink: 0 !important;
+  }
+}
