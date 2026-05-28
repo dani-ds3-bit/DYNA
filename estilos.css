@@ -2276,7 +2276,7 @@ body.tema-oscuro .caja-info-progreso {
   color: #f1f5f9;
 }
 
-/* Corrección responsive para barra superior y dropdown de notificaciones */
+/*  */
 @media (max-width: 768px) {
   .barra-superior-derecha {
     width: 100% !important;
@@ -2293,11 +2293,11 @@ body.tema-oscuro .caja-info-progreso {
   }
 
   .contenedor-campanita {
-    order: 3 !important; /* Campanita a la derecha */
+    order: 3 !important;
   }
 
   .dropdown-notificaciones {
-    right: 0 !important; /* Ahora que la campanita está a la derecha, el menú se abre hacia la izquierda */
+    right: 0 !important;
     left: auto !important;
     width: 280px;
     max-width: calc(100vw - 32px);
