@@ -13,7 +13,11 @@ function cargarEnv($ruta) {
         return;
     }
 
-    $lineas = file($ruta, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    $lineas = @file($ruta, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    if ($lineas === false) {
+        return;
+    }
+
     foreach ($lineas as $linea) {
         // Ignorar comentarios
         if (strpos(trim($linea), '#') === 0) {
@@ -29,22 +33,41 @@ function cargarEnv($ruta) {
             $valor = trim($valor, "\"'");
             
             if (!empty($clave)) {
-                putenv("$clave=$valor");
                 $_ENV[$clave] = $valor;
                 $_SERVER[$clave] = $valor;
+                if (function_exists('putenv')) {
+                    @putenv("$clave=$valor");
+                }
             }
         }
     }
+}
+
+// Función segura para obtener variables de entorno con fallback
+function obtenerEnv($clave, $default = null) {
+    if (isset($_ENV[$clave])) {
+        return $_ENV[$clave];
+    }
+    if (isset($_SERVER[$clave])) {
+        return $_SERVER[$clave];
+    }
+    if (function_exists('getenv')) {
+        $val = @getenv($clave);
+        if ($val !== false) {
+            return $val;
+        }
+    }
+    return $default;
 }
 
 // Cargar el archivo de configuración .env en la raíz del proyecto
 cargarEnv(__DIR__ . '/../.env');
 
 // se declaran las credenciales de base de datos con fallback seguro
-$servidor = getenv('DB_SERVER') ?: "localhost";
-$usuario = getenv('DB_USER') ?: "root";
-$clave = getenv('DB_PASS') !== false ? getenv('DB_PASS') : "Mayonesa#12";
-$base_datos = getenv('DB_NAME') ?: "dyna_db";
+$servidor = obtenerEnv('DB_SERVER', 'localhost');
+$usuario = obtenerEnv('DB_USER', 'root');
+$clave = obtenerEnv('DB_PASS', 'Mayonesa#12');
+$base_datos = obtenerEnv('DB_NAME', 'dyna_db');
 
 // se creo la conexion usando 
 $conexion = new mysqli($servidor, $usuario, $clave, $base_datos);
