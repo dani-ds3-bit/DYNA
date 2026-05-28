@@ -1,0 +1,8 @@
+# Impedir el acceso publico a archivos sensibles y de configuracion
+<FilesMatch "^\.env|^\.gitignore|^\.env\.example">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Desactivar la exploracion publica de directorios (evita listar archivos si no hay un index.php)
+Options -Indexes
