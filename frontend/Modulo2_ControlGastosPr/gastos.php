@@ -181,6 +181,16 @@ include(__DIR__ . "/../../backend/Modulo2_ControlGastosPr/obtener_gastos.php");
               <?php endforeach; ?>
             </div>
           </section>
+        <?php else: ?>
+          <section class="panel-becas margen-inf-12" style="border-style: dashed; border-color: var(--color-primario); display: flex; align-items: center; justify-content: space-between; padding: 16px; gap: 15px;">
+            <div>
+              <p style="margin: 0 0 4px 0; font-weight: bold; color: var(--color-texto);">¿Cuentas con una beca o apoyo?</p>
+              <small style="color: var(--color-suave); display: block; line-height: 1.3;">Registra tu primera beca para vincular tus gastos y llevar un mejor control.</small>
+            </div>
+            <button onclick="abrirModalBeca()" class="btn btn-principal" style="width: auto; font-size: 0.85rem; padding: 8px 14px; flex-shrink: 0;">
+              + Agregar Beca
+            </button>
+          </section>
         <?php endif; ?>
 
         <section class="panel">

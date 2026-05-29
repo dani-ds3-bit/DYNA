@@ -90,9 +90,9 @@ include(__DIR__ . "/../../backend/Modulo1_Login/registro.php");
               <!-- contenedor donde se agregan las filas de beca dinámicamente -->
               <div id="lista-becas">
                 <div class="fila-beca" style="display:flex; gap:8px; margin-bottom:8px; align-items:center;">
-                  <input type="text" name="nombre_beca[]" placeholder="Nombre (ej. BENITO JUAREZ)" required
+                  <input type="text" name="nombre_beca[]" placeholder="Nombre (ej. BENITO JUAREZ)"
                     style="flex:1; padding:8px 10px; border:1px solid #c6e9d4; border-radius:8px; font-size:14px;">
-                  <input type="number" name="monto_beca[]" step="0.01" min="0.01" placeholder="Monto $" required
+                  <input type="number" name="monto_beca[]" step="0.01" min="0.01" placeholder="Monto $"
                     style="width:110px; padding:8px 10px; border:1px solid #c6e9d4; border-radius:8px; font-size:14px;">
                   <button type="button" class="btn-quitar-beca"
                     style="width:28px; height:28px; border-radius:50%; border:none; background:#fee2e2; color:#b91c1c; font-size:16px; cursor:pointer; flex-shrink:0; display:none;">×</button>
